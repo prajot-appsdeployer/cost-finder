@@ -1,0 +1,49 @@
+/* navbar color: #5C3994 */
+
+.site-navbar {
+  position: relative;
+}
+
+.top-nav {
+  background-color: #5c3994;
+  color: white;
+}
+
+.steps-navlinks {
+  background-color: #e9ecef;
+}
+
+.step-link {
+  text-decoration: none;
+  font-weight: 600;
+  color: #999;
+  padding: 10px 80px 10px 80px;
+  transition: 0.2s ease-in;
+}
+
+.step-link:hover {
+  color: #333;
+  background-color: rgb(179, 179, 179);
+}
+.step-link.active {
+  color: #fff;
+  background-color: #444;
+}
+
+@media (max-width: 800px) {
+  .step-link {
+    padding: 10px 50px 10px 50px;
+  }
+}
+
+@media (max-width: 650px) {
+  .step-link {
+    padding: 10px 30px 10px 30px;
+  }
+}
+
+@media (max-width: 425px) {
+  .step-link {
+    padding: 5px 10px 5px 20px;
+  }
+}

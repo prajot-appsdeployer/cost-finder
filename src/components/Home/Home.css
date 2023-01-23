@@ -1,0 +1,61 @@
+.title {
+  font-size: 30px;
+  color: #555;
+}
+
+/* input {
+  border: none;
+} */
+
+.quantity-wrapper {
+  width: 100%;
+}
+
+.quantity-input {
+  width: 50px;
+  background-color: white;
+  border: 1px solid #4bb543;
+  border-radius: 4px;
+  padding-top: 5px;
+  color: #099b8c;
+  padding-bottom: 5px;
+}
+
+.green-text {
+  font-size: 20px;
+  color: #099b8c;
+  font-weight: 700;
+}
+
+.area-input {
+  width: 100px;
+  background-color: white;
+  font-size: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 0.5px solid #4bb543;
+}
+
+.area-input::placeholder {
+  color: #099b8c;
+  font-weight: 700;
+}
+
+.cards-container {
+  max-width: 500px;
+}
+
+.cardImg {
+  width: 100px;
+}
+
+@media (max-width: 520px) {
+  .cardImg {
+    width: 70px;
+  }
+}
+@media (max-width: 520px) {
+  .cardImg {
+    width: 60px;
+  }
+}
