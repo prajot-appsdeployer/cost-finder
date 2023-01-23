@@ -33,7 +33,7 @@ function BathroomCounter() {
         <Button
           variant="success me-2"
           onClick={() => {
-            dispatch(bathroomDecrement());
+            dispatch(bathroomDecrement(count));
             decrement();
           }}
         >

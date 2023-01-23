@@ -11,16 +11,24 @@ export const HouseSlice = createSlice({
       state.house.push(action.payload);
     },
 
-    bedroomDecrement: (state) => {
-      state.house.splice(4, 1);
+    bedroomDecrement: (state, action) => {
+      const newArray = state.house.filter((room) => {
+        return room.title !== ` Bedroom ${action.payload}`;
+      });
+
+      state.house = newArray;
     },
 
     bathroomIncrement: (state, action) => {
       state.house.push(action.payload);
     },
 
-    bathroomDecrement: (state) => {
-      state.house.splice(4, 1);
+    bathroomDecrement: (state, action) => {
+      const newArray = state.house.filter((room) => {
+        return room.title !== ` Bathroom ${action.payload}`;
+      });
+
+      state.house = newArray;
     },
   },
 });

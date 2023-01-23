@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bedroomDecrement, bedroomIncrement } from "../../redux/houseSlice";
 
 function BedroomCounter() {
   const [count, setCount] = useState(1);
+  const home = useSelector((c) => c.home.house);
   const dispatch = useDispatch();
 
   const increment = () => {
@@ -33,7 +34,7 @@ function BedroomCounter() {
         <Button
           variant="success me-2"
           onClick={() => {
-            dispatch(bedroomDecrement());
+            dispatch(bedroomDecrement(count));
             decrement();
           }}
         >
