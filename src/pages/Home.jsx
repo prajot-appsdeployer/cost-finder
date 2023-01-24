@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import "../components/Home/Home.css";
 import Button from "react-bootstrap/Button";
 import HomeCard from "../components/Home/HomeCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BedroomCounter from "../components/Home/BedroomCounter";
 import BathroomCounter from "../components/Home/BathroomCounter";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { userCarpetArea } from "../redux/houseSlice";
 
 export const Home = () => {
   const navigate = useNavigate();
   const home = useSelector((el) => el.home.house);
   const carpetArea = useSelector((el) => el.home.carpetArea);
+  const dispatch = useDispatch();
 
   const [carpetAreaInput, setcarpetAreaInput] = useState(0);
 
@@ -22,14 +24,15 @@ export const Home = () => {
     if (carpetAreaInput < 300) {
       alert("Please enter valid input.");
     } else {
+      dispatch(userCarpetArea(carpetAreaInput));
       navigate("/step2");
     }
   };
 
   return (
     <>
-      <div className="container mb-3">
-        <h1 className="text-center mt-5 title">Budget your spend</h1>
+      <div className="container mb-3 mt-4">
+        <h1 className="text-center  title">Budget your spend</h1>
         <p className="text-center mb-4">
           CostFinder helps you figure out your average spend based on the
           elements you like in your space.

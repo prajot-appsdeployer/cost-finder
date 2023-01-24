@@ -24,6 +24,8 @@ function BathroomCounter() {
       "http://costfinder.consdeployer.com/assets/roomselection/bathroom.png",
     title: ` Bathroom ${count + 1}`,
     number: "1",
+    cover:
+      "http://costfinder.consdeployer.com/assets/productselection/bathroombg.jpg",
   };
 
   return (

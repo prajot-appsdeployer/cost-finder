@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { House } from "../House";
 
-const initialState = { house: House, carpetArea: 510 };
+const initialState = { house: House, carpetArea: 510, userCarpetAreaValue: 0 };
 
 export const HouseSlice = createSlice({
   name: "counter",
@@ -38,6 +38,10 @@ export const HouseSlice = createSlice({
         state.carpetArea -= 40;
       }
     },
+
+    userCarpetArea: (state, action) => {
+      state.userCarpetAreaValue = action.payload;
+    },
   },
 });
 
@@ -46,6 +50,7 @@ export const {
   bedroomDecrement,
   bathroomIncrement,
   bathroomDecrement,
+  userCarpetArea,
 } = HouseSlice.actions;
 
 export default HouseSlice.reducer;
