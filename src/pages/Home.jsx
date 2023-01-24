@@ -8,6 +8,7 @@ import BathroomCounter from "../components/Home/BathroomCounter";
 
 export const Home = () => {
   const home = useSelector((c) => c.home.house);
+  const carpetArea = useSelector((c) => c.home.carpetArea);
 
   return (
     <>
@@ -25,7 +26,7 @@ export const Home = () => {
 
         <form className=" mt-4 text-center" onSubmit={() => {}}>
           <p className="mb-1">Assumed Carpet Area (Sq. ft.)</p>
-          <p className="green-text mb-4">510 Sq. ft.</p>
+          <p className="green-text mb-4">{carpetArea} Sq. ft.</p>
 
           <p className="mb-1">Please enter your Carpet Area (Sq. ft.)</p>
           <input
