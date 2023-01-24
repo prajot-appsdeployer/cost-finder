@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "../components/Home/Home.css";
 import Button from "react-bootstrap/Button";
 import HomeCard from "../components/Home/HomeCard";
 import { useSelector } from "react-redux";
 import BedroomCounter from "../components/Home/BedroomCounter";
 import BathroomCounter from "../components/Home/BathroomCounter";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  const home = useSelector((c) => c.home.house);
-  const carpetArea = useSelector((c) => c.home.carpetArea);
+  const navigate = useNavigate();
+  const home = useSelector((el) => el.home.house);
+  const carpetArea = useSelector((el) => el.home.carpetArea);
+
+  const [carpetAreaInput, setcarpetAreaInput] = useState(0);
+
+  const carpetAreaInputValue = (e) => {
+    setcarpetAreaInput(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (carpetAreaInput < 300) {
+      alert("Please enter valid input.");
+    } else {
+      navigate("/step2");
+    }
+  };
 
   return (
     <>
@@ -24,7 +40,7 @@ export const Home = () => {
           <BathroomCounter />
         </div>
 
-        <form className=" mt-4 text-center" onSubmit={() => {}}>
+        <form className=" mt-4 text-center" onSubmit={() => handleSubmit()}>
           <p className="mb-1">Assumed Carpet Area (Sq. ft.)</p>
           <p className="green-text mb-4">{carpetArea} Sq. ft.</p>
 
@@ -33,6 +49,8 @@ export const Home = () => {
             type="number"
             className="area-input ps-2 green-text mb-4"
             placeholder="0"
+            value={carpetAreaInput}
+            onChange={(e) => carpetAreaInputValue(e)}
             min="300"
             required
           />
@@ -46,7 +64,9 @@ export const Home = () => {
             })}
           </div>
 
-          <Button variant="success">Next &#8594; </Button>
+          <Button variant="success" type="submit">
+            Next &#8594;{" "}
+          </Button>
         </form>
       </div>
     </>
