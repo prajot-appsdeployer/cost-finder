@@ -1,37 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Container, Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setID } from "../redux/houseSlice";
+import { RoomCards } from "../components/Step2/RoomCards";
 
 export const Step2 = () => {
   const home = useSelector((el) => el.home.house);
+  const dispatch = useDispatch();
 
-  // const [show, setShow] = useState(null);
-  // home.forEach((el) => {
-  //   const id = el.title.toLowerCase().replaceAll(" ", "");
+  useEffect(() => {
+    dispatch(setID());
+  }, []);
 
-  // });
-
-  // if (id === "livingroom") {
-  // }
+  const [show, setShow] = useState(false);
+  const [checkID, setCheckID] = useState("livingroom");
+  const arr = home.filter((room, index) => {
+    return room.id === checkID ? <RoomCards key={index} room={room} /> : null;
+  });
 
   return (
     <>
       <Container>
         <Row className="mt-4">
           <div className="col-lg-3  mb-5">
-            <Card className="p-3">
+            <Card className="p-3 shadow border-0">
               {home.map((room, index) => {
                 return (
                   <div key={index} className="d-flex justify-content-around">
-                    <p className="mb-1 flex-grow-1">{room.title}</p>
-                    <Form.Check type="switch" />
+                    <label
+                      className="form-check-label flex-grow-1"
+                      htmlFor={room.id}
+                    >
+                      <p className="mb-1">{room.title}</p>
+                    </label>
+                    <div className="form-check form-switch">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id={room.id}
+                        onChange={() => {
+                          setCheckID(room.id);
+                        }}
+                      />
+                    </div>
                   </div>
                 );
               })}
@@ -39,51 +55,8 @@ export const Step2 = () => {
           </div>
 
           <div className="col-lg-6 mb-5">
-            {home.map((room, index) => {
-              return (
-                <Card key={index} className="mb-3">
-                  <Card.Img variant="top" src={room.cover} />
-                  <Card.Body>
-                    <Container>
-                      <div>
-                        <Form.Check.Input />{" "}
-                        <Form.Check.Label>Enable {room.title}</Form.Check.Label>
-                      </div>
-                    </Container>
-                    <p className="text-muted ">
-                      How would you like to spend on this room?
-                    </p>
-                    <div className="d-flex">
-                      <Form.Check
-                        type="radio"
-                        id="basic"
-                        aria-label="radio 1"
-                        name="styles"
-                        className="d-inline-flex mx-2 "
-                      />
-                      <Form.Check.Label>Basic</Form.Check.Label>
-
-                      <Form.Check
-                        type="radio"
-                        id="standard"
-                        aria-label="radio 1"
-                        name="styles"
-                        className="d-inline-flex mx-2 "
-                      />
-                      <Form.Check.Label>Standard</Form.Check.Label>
-
-                      <Form.Check
-                        type="radio"
-                        id="lavish"
-                        aria-label="radio 1"
-                        name="styles"
-                        className="d-inline-flex mx-2"
-                      />
-                      <Form.Check.Label>Lavish</Form.Check.Label>
-                    </div>
-                  </Card.Body>
-                </Card>
-              );
+            {arr.map((room, index) => {
+              return <RoomCards key={index} room={room} />;
             })}
           </div>
 
