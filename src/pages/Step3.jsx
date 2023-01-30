@@ -10,9 +10,7 @@ export const Step3 = () => {
     <>
       <Container>
         <section className="mt-4">
-          <p className="text-center display-6 mb-4">
-            Your Total Estimate is ₹ 0
-          </p>
+          <p className="text-center title mb-4">Your Total Estimate is ₹ 0</p>
 
           <div className=" row ">
             <div className="col-lg-6 mb-5 ">

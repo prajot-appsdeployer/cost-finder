@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { House } from "../House";
 
-const initialState = { house: House, carpetArea: 510, userCarpetAreaValue: 0 };
+const initialState = {
+  house: House,
+  carpetArea: 510,
+  userCarpetAreaValue: 0,
+  floorPrice: 0,
+  wallPricing: 0,
+  totalCost: 0,
+};
 
 export const HouseSlice = createSlice({
-  name: "counter",
+  name: "home",
   initialState,
   reducers: {
     setID: (state) => {
@@ -49,6 +56,14 @@ export const HouseSlice = createSlice({
     userCarpetArea: (state, action) => {
       state.userCarpetAreaValue = action.payload;
     },
+
+    flooringPrice: (state, action) => {
+      state.floorPrice += action.payload;
+    },
+
+    totalExpense: (state, action) => {
+      state.totalCost = state.floorPrice + state.wallPricing;
+    },
   },
 });
 
@@ -59,6 +74,8 @@ export const {
   bathroomIncrement,
   bathroomDecrement,
   userCarpetArea,
+  flooringPrice,
+  totalExpense,
 } = HouseSlice.actions;
 
 export default HouseSlice.reducer;

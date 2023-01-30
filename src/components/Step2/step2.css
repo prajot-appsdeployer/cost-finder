@@ -1,0 +1,24 @@
+.customize-images {
+  width: 110px !important;
+  height: 110px !important ;
+  border-radius: 4px;
+}
+
+/* HIDE RADIO */
+.image-container [type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+.image-container [type="radio"] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+.image-container [type="radio"]:checked + img {
+  outline: 3px solid #5d9c2e;
+  box-shadow: 1px 1px 1px 1px #888;
+}

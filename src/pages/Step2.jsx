@@ -1,50 +1,42 @@
 import React, { useEffect } from "react";
 import { Card, Container, Row } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setID } from "../redux/houseSlice";
+import { setID, totalExpense } from "../redux/houseSlice";
 import { RoomCards } from "../components/Step2/RoomCards";
 
 export const Step2 = () => {
+  const [isToggled, setisToggled] = useState(false);
+  const [checkID, setCheckID] = useState("livingroom");
   const home = useSelector((el) => el.home.house);
+  const totalCost = useSelector((el) => el.home.totalCost);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setID());
   }, []);
 
-  const [show, setShow] = useState(false);
-  const [checkID, setCheckID] = useState("livingroom");
-  const arr = home.filter((room, index) => {
-    return room.id === checkID ? <RoomCards key={index} room={room} /> : null;
-  });
-
   return (
     <>
-      <Container>
-        <Row className="mt-4">
+      <Container className=" mt-4">
+        <h1 className="text-center title">Customize your rooms</h1>
+        <Row>
           <div className="col-lg-3  mb-5">
             <Card className="p-3 shadow border-0">
               {home.map((room, index) => {
                 return (
                   <div key={index} className="d-flex justify-content-around">
-                    <label
-                      className="form-check-label flex-grow-1"
-                      htmlFor={room.id}
-                    >
-                      <p className="mb-1">{room.title}</p>
-                    </label>
+                    <p className="mb-1 flex-grow-1">{room.title}</p>
                     <div className="form-check form-switch">
                       <input
+                        checked={checkID === room.id}
                         className="form-check-input"
                         type="checkbox"
-                        id={room.id}
                         onChange={() => {
                           setCheckID(room.id);
+                          setisToggled(!isToggled);
                         }}
                       />
                     </div>
@@ -55,8 +47,15 @@ export const Step2 = () => {
           </div>
 
           <div className="col-lg-6 mb-5">
-            {arr.map((room, index) => {
-              return <RoomCards key={index} room={room} />;
+            {home.map((room, index) => {
+              return (
+                <RoomCards
+                  key={index}
+                  room={room}
+                  checkID={checkID}
+                  index={index}
+                />
+              );
             })}
           </div>
 
@@ -66,8 +65,8 @@ export const Step2 = () => {
                 style={{ width: "18rem" }}
                 className="mb-4 shadow mx-auto  bg-white rounded"
               >
-                <Card.Body>
-                  <p className="text-center">Net Estimate ₹ 0</p>
+                <Card.Body className="text-center">
+                  <p>Net Estimate ₹ {totalCost}</p>
                   <h6 className="text-muted text-sm-center">
                     Estimate includes labour cost + material cost
                   </h6>
