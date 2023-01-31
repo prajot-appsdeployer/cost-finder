@@ -3,13 +3,13 @@ import "./step2.css";
 import { Flooring } from "./Flooring";
 import { Walls } from "./Walls";
 
-export const CustomizeRoom = ({ roomIndex }) => {
+export const CustomizeRoom = ({ roomIndex, roomID }) => {
   return (
     <>
       {/* Flooring */}
-      <Flooring roomIndex={roomIndex} />
+      <Flooring roomIndex={roomIndex} roomID={roomID} />
       {/* Walls */}
-      <Walls roomIndex={roomIndex} />
+      <Walls roomIndex={roomIndex} roomID={roomID} />
     </>
   );
 };

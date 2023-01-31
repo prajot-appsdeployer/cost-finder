@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Card } from "react-bootstrap";
 import Collapse from "react-bootstrap/Collapse";
-import { totalExpense } from "../../redux/houseSlice";
+import { totalExpense, wallCustomizationPrice } from "../../redux/houseSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-export const Walls = ({ roomIndex }) => {
+export const Walls = ({ roomIndex, roomID }) => {
   const [openWalls, setOpenWalls] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const [WallPrice, setWallPrice] = useState(0);
 
+  const home = useSelector((el) => el.home.house);
+  // console.log(home[0]);
+
+  const dispatch = useDispatch();
   const roomIndexChanged = roomIndex + 100;
 
   const WallsImages = [
@@ -56,7 +61,7 @@ export const Walls = ({ roomIndex }) => {
                     className="customize-images"
                     onClick={() => {
                       setSelectedImage(image.id);
-                      setWallPrice(image.cost);
+                      dispatch(wallCustomizationPrice({ image, roomID }));
                     }}
                   />
                   <p className="image-title">{image.title}</p>

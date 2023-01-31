@@ -6,7 +6,7 @@ const initialState = {
   carpetArea: 510,
   userCarpetAreaValue: 0,
   floorPrice: 0,
-  wallPricing: 0,
+  wallPrice: 0,
   totalCost: 0,
 };
 
@@ -58,11 +58,23 @@ export const HouseSlice = createSlice({
     },
 
     flooringPrice: (state, action) => {
-      state.floorPrice += action.payload;
+      state.house.map((room) => {
+        if (room.id === action.payload.roomID) {
+          room.floorCost = action.payload.image.cost;
+        }
+      });
+    },
+
+    wallCustomizationPrice: (state, action) => {
+      state.house.map((room) => {
+        if (room.id === action.payload.roomID) {
+          room.wallCost = action.payload.image.cost;
+        }
+      });
     },
 
     totalExpense: (state, action) => {
-      state.totalCost = state.floorPrice + state.wallPricing;
+      state.totalCost = action.payload;
     },
   },
 });
@@ -74,6 +86,7 @@ export const {
   bathroomIncrement,
   bathroomDecrement,
   userCarpetArea,
+  wallCustomizationPrice,
   flooringPrice,
   totalExpense,
 } = HouseSlice.actions;

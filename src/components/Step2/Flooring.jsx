@@ -5,12 +5,10 @@ import Collapse from "react-bootstrap/Collapse";
 import { flooringPrice, totalExpense } from "../../redux/houseSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-export const Flooring = ({ roomIndex }) => {
+export const Flooring = ({ roomIndex, roomID }) => {
   const [openFlorring, setOpenFlooring] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
-  // const [flooringPrice, setFlooringPrice] = useState(0);
 
-  const home = useSelector((el) => el.home.house);
   const dispatch = useDispatch();
 
   const FlooringImages = [
@@ -53,17 +51,20 @@ export const Flooring = ({ roomIndex }) => {
             {FlooringImages.map((image, index) => (
               <div key={index} className="col-sm-4 image-container">
                 <label>
-                  <input type="radio" name={roomIndex} />
+                  <input
+                    type="radio"
+                    name={roomIndex}
+                    onClick={() => {
+                      setSelectedImage(image.id);
+                      image.active = !image.active;
+                      dispatch(flooringPrice({ image, roomID }));
+                    }}
+                  />
                   <img
                     id={image.id}
                     src={image.src}
                     alt={image.title}
                     className="customize-images"
-                    onClick={() => {
-                      setSelectedImage(image.id);
-                      console.log(image.price);
-                      dispatch(flooringPrice(image.cost));
-                    }}
                   />
                   <p className="image-title">{image.title}</p>
                 </label>

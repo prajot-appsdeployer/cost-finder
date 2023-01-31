@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { CustomizeRoom } from "./CustomizeRoom";
 
-export const RoomCards = ({ room, index, checkID }) => {
+export const RoomCards = ({ room, index, roomID, checkID }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
@@ -55,7 +55,7 @@ export const RoomCards = ({ room, index, checkID }) => {
                 <Form.Check.Label>Lavish</Form.Check.Label>
               </div>
 
-              <CustomizeRoom roomIndex={index} />
+              <CustomizeRoom roomIndex={index} roomID={roomID} />
             </Card.Body>
           ) : (
             <>
