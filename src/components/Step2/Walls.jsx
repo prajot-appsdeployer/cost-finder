@@ -21,7 +21,7 @@ export const Walls = ({ roomIndex, roomID }) => {
       id: 4,
       src: "http://costfinder.consdeployer.com/assets/productselection/livingroom/walltreatment/painting.png",
       title: "Painting",
-      cost: 26000,
+      cost: 20000,
     },
     {
       id: 5,
@@ -33,7 +33,7 @@ export const Walls = ({ roomIndex, roomID }) => {
       id: 6,
       src: "http://costfinder.consdeployer.com/assets/productselection/livingroom/walltreatment/paintingwallputtywallpaper.png",
       title: "Painting, Putty and Wallpaper",
-      cost: 55000,
+      cost: 60000,
     },
   ];
 
