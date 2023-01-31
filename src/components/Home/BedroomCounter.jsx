@@ -4,26 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { bedroomDecrement, bedroomIncrement } from "../../redux/houseSlice";
 
 function BedroomCounter() {
-  const [count, setCount] = useState(1);
-  const home = useSelector((c) => c.home.house);
+  const bedroomQuantity = useSelector((el) => el.home.bedroomQuantity);
   const dispatch = useDispatch();
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    } else {
-      return count;
-    }
-  };
 
   const bedroom = {
     image:
       "http://costfinder.consdeployer.com/assets/roomselection/bedroom.png",
-    title: ` Bedroom ${count + 1}`,
+    title: ` Bedroom ${bedroomQuantity + 1}`,
     number: "1",
     cover:
       "http://costfinder.consdeployer.com/assets/productselection/bedroombg.jpg",
@@ -36,8 +23,7 @@ function BedroomCounter() {
         <Button
           variant="success me-2"
           onClick={() => {
-            dispatch(bedroomDecrement(count));
-            decrement();
+            dispatch(bedroomDecrement());
           }}
         >
           -
@@ -45,7 +31,7 @@ function BedroomCounter() {
         <input
           type="text"
           className="text-center quantity-input"
-          placeholder={count}
+          placeholder={bedroomQuantity}
           minLength="0"
           maxLength="2"
           min="0"
@@ -55,7 +41,6 @@ function BedroomCounter() {
           variant="success ms-2"
           onClick={() => {
             dispatch(bedroomIncrement(bedroom));
-            increment();
           }}
         >
           +

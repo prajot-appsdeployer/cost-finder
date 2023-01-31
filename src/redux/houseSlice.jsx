@@ -5,6 +5,8 @@ const initialState = {
   house: House,
   carpetArea: 510,
   userCarpetAreaValue: 0,
+  bedroomQuantity: 1,
+  bathroomQuantity: 1,
   floorPrice: 0,
   wallPrice: 0,
   totalCost: 0,
@@ -24,32 +26,40 @@ export const HouseSlice = createSlice({
     bedroomIncrement: (state, action) => {
       state.house.push(action.payload);
       state.carpetArea += 120;
+      state.bedroomQuantity = state.bedroomQuantity + 1;
     },
 
     bedroomDecrement: (state, action) => {
       const newArray = state.house.filter((room) => {
-        return room.title !== ` Bedroom ${action.payload}`;
+        return room.title !== ` Bedroom ${state.bedroomQuantity}`;
       });
       state.house = newArray;
 
-      if (action.payload > 1) {
+      if (state.bedroomQuantity > 1) {
         state.carpetArea -= 120;
+        state.bedroomQuantity = state.bedroomQuantity - 1;
+      } else {
+        return state.bedroomQuantity;
       }
     },
 
     bathroomIncrement: (state, action) => {
       state.house.push(action.payload);
       state.carpetArea += 40;
+      state.bathroomQuantity = state.bathroomQuantity + 1;
     },
 
     bathroomDecrement: (state, action) => {
       const newArray = state.house.filter((room) => {
-        return room.title !== ` Bathroom ${action.payload}`;
+        return room.title !== ` Bathroom ${state.bathroomQuantity}`;
       });
       state.house = newArray;
 
-      if (action.payload > 1) {
+      if (state.bathroomQuantity > 1) {
         state.carpetArea -= 40;
+        state.bathroomQuantity = state.bathroomQuantity - 1;
+      } else {
+        return state.bathroomQuantity;
       }
     },
 

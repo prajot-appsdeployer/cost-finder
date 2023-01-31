@@ -1,28 +1,16 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bathroomDecrement, bathroomIncrement } from "../../redux/houseSlice";
 
 function BathroomCounter() {
-  const [count, setCount] = useState(1);
+  const bathroomQuantity = useSelector((el) => el.home.bathroomQuantity);
   const dispatch = useDispatch();
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    } else {
-      return count;
-    }
-  };
 
   const bathroom = {
     image:
       "http://costfinder.consdeployer.com/assets/roomselection/bathroom.png",
-    title: ` Bathroom ${count + 1}`,
+    title: ` Bathroom ${bathroomQuantity + 1}`,
     number: "1",
     cover:
       "http://costfinder.consdeployer.com/assets/productselection/bathroombg.jpg",
@@ -35,7 +23,7 @@ function BathroomCounter() {
         <Button
           variant="success me-2"
           onClick={() => {
-            dispatch(bathroomDecrement(count));
+            dispatch(bathroomDecrement());
             decrement();
           }}
         >
@@ -44,7 +32,7 @@ function BathroomCounter() {
         <input
           type="text"
           className="text-center quantity-input"
-          placeholder={count}
+          placeholder={bathroomQuantity}
           minLength="0"
           maxLength="2"
           min="0"
