@@ -14,6 +14,10 @@ export const Step2 = () => {
   const totalCost = useSelector((el) => el.home.totalCost);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(setID());
+  }, []);
+
   let floorPrice = 0,
     wallPrice = 0,
     totalPrice = 0;
@@ -23,10 +27,6 @@ export const Step2 = () => {
   });
   totalPrice = floorPrice + wallPrice;
   dispatch(totalExpense(totalPrice));
-
-  useEffect(() => {
-    dispatch(setID());
-  }, []);
 
   return (
     <>
