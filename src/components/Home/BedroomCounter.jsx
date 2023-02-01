@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { bedroomDecrement, bedroomIncrement } from "../../redux/houseSlice";
+import bedroomIcon from "../../assets/rooms/icons/bedroom.png";
+import bedroomCover from "../../assets/rooms/cover/bedroombg.jpg";
 
 function BedroomCounter() {
   const bedroomQuantity = useSelector((el) => el.home.bedroomQuantity);
   const dispatch = useDispatch();
 
   const bedroom = {
-    image:
-      "http://costfinder.consdeployer.com/assets/roomselection/bedroom.png",
+    image: bedroomIcon,
     title: ` Bedroom ${bedroomQuantity + 1}`,
     number: "1",
-    cover:
-      "http://costfinder.consdeployer.com/assets/productselection/bedroombg.jpg",
+    cover: bedroomCover,
   };
 
   return (

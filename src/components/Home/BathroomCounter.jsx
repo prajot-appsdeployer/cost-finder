@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { bathroomDecrement, bathroomIncrement } from "../../redux/houseSlice";
+import bathroomIcon from "../../assets/rooms/icons/bathroom.png";
+import bathroomCover from "../../assets/rooms/cover/bathroombg.jpg";
 
 function BathroomCounter() {
   const bathroomQuantity = useSelector((el) => el.home.bathroomQuantity);
   const dispatch = useDispatch();
 
   const bathroom = {
-    image:
-      "http://costfinder.consdeployer.com/assets/roomselection/bathroom.png",
+    image: bathroomIcon,
     title: ` Bathroom ${bathroomQuantity + 1}`,
     number: "1",
-    cover:
-      "http://costfinder.consdeployer.com/assets/productselection/bathroombg.jpg",
+    cover: bathroomCover,
   };
 
   return (

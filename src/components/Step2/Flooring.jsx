@@ -1,34 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Card } from "react-bootstrap";
 import Collapse from "react-bootstrap/Collapse";
-import { flooringPrice, totalExpense } from "../../redux/houseSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { flooringPrice } from "../../redux/houseSlice";
+import { useDispatch } from "react-redux";
+import vitrifiedImage from "../../assets/customizations/Flooring/vitrified.png";
+import woodenImage from "../../assets/customizations/Flooring/wooden.png";
+import italianImage from "../../assets/customizations/Flooring/italian.png";
 
 export const Flooring = ({ roomIndex, roomID }) => {
   const [openFlorring, setOpenFlooring] = useState(false);
-  const [selectedImage, setSelectedImage] = useState();
-
   const dispatch = useDispatch();
 
   const FlooringImages = [
     {
       id: 1,
-      src: "http://costfinder.consdeployer.com/assets/productselection/livingroom/flooring/vitrified.png",
-      title: "Virtified Tiles",
+      src: vitrifiedImage,
+      title: "Vitrified Tiles",
       cost: 32000,
       active: false,
     },
     {
       id: 2,
-      src: "http://costfinder.consdeployer.com/assets/productselection/livingroom/flooring/wooden.png",
+      src: woodenImage,
       title: "Wooden Flooring",
       cost: 28000,
       active: false,
     },
     {
       id: 3,
-      src: "http://costfinder.consdeployer.com/assets/productselection/livingroom/flooring/italian.png",
+      src: italianImage,
       title: "Italian Marble",
       cost: 55000,
       active: false,
@@ -55,8 +56,6 @@ export const Flooring = ({ roomIndex, roomID }) => {
                     type="radio"
                     name={roomIndex}
                     onClick={() => {
-                      setSelectedImage(image.id);
-                      image.active = !image.active;
                       dispatch(flooringPrice({ image, roomID }));
                     }}
                   />

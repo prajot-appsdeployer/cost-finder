@@ -2,36 +2,34 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Card } from "react-bootstrap";
 import Collapse from "react-bootstrap/Collapse";
-import { totalExpense, wallCustomizationPrice } from "../../redux/houseSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { wallCustomizationPrice } from "../../redux/houseSlice";
+import { useDispatch } from "react-redux";
+import painting from "../../assets/customizations/Walls/painting.png";
+import paintingandwallputty from "../../assets/customizations//Walls/paintingandwallputty.png";
+import paintingwallputtywallpaper from "../../assets/customizations//Walls/paintingwallputtywallpaper.png";
 
 export const Walls = ({ roomIndex, roomID }) => {
   const [openWalls, setOpenWalls] = useState(false);
-  const [selectedImage, setSelectedImage] = useState();
-  const [WallPrice, setWallPrice] = useState(0);
-
-  const home = useSelector((el) => el.home.house);
-  // console.log(home[0]);
-
   const dispatch = useDispatch();
+
   const roomIndexChanged = roomIndex + 100;
 
   const WallsImages = [
     {
       id: 4,
-      src: "http://costfinder.consdeployer.com/assets/productselection/livingroom/walltreatment/painting.png",
+      src: painting,
       title: "Painting",
       cost: 20000,
     },
     {
       id: 5,
-      src: "http://costfinder.consdeployer.com/assets/productselection/livingroom/walltreatment/paintingandwallputty.png",
+      src: paintingandwallputty,
       title: "Painting and Putty",
       cost: 37000,
     },
     {
       id: 6,
-      src: "http://costfinder.consdeployer.com/assets/productselection/livingroom/walltreatment/paintingwallputtywallpaper.png",
+      src: paintingwallputtywallpaper,
       title: "Painting, Putty and Wallpaper",
       cost: 60000,
     },
@@ -60,7 +58,6 @@ export const Walls = ({ roomIndex, roomID }) => {
                     alt={image.title}
                     className="customize-images"
                     onClick={() => {
-                      setSelectedImage(image.id);
                       dispatch(wallCustomizationPrice({ image, roomID }));
                     }}
                   />
