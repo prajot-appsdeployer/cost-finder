@@ -11,7 +11,7 @@ export const RoomChart = () => {
   const home = useSelector((el) => el.home.house);
 
   const RoomTitles = home.map((el) => el.title);
-  const Flooring = home.map((el) => {
+  const Expense = home.map((el) => {
     let floorCost = 0;
     let wallCost = 0;
     if (el.floorCost !== undefined) {
@@ -28,7 +28,7 @@ export const RoomChart = () => {
     datasets: [
       {
         label: "Expense on per room",
-        data: Flooring,
+        data: Expense,
         backgroundColor: Colours1,
         hoverOffset: 4,
       },
@@ -65,7 +65,7 @@ export const RoomChart = () => {
                 </span>{" "}
                 {title}
               </Col>
-              <Col>₹ {Flooring[index]}</Col>
+              <Col>₹ {Expense[index]}</Col>
             </Row>
           );
         })}
