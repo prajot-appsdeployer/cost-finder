@@ -2,7 +2,7 @@ import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { Colours1 } from "../../Colours1";
+import { Colours1 } from "./Colours1";
 import { Card, Col, Row } from "react-bootstrap";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
