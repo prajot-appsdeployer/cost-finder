@@ -10,16 +10,39 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export const CustomizationChart = () => {
   const home = useSelector((el) => el.home.house);
 
-  const customizationTitles = ["Flooring", "Walls"];
+  const customizationTitles = [
+    "Flooring",
+    "Walls",
+    "Ceiling",
+    "Electricals",
+    "Windows",
+    "Doors",
+  ];
 
   let floorPrice = 0,
-    wallPrice = 0;
+    wallPrice = 0,
+    ceilingPrice = 0,
+    electricalPrice = 0,
+    windowPrice = 0,
+    doorPrice = 0;
+
   home.forEach((obj) => {
     if (obj.floorCost) floorPrice += obj.floorCost;
     if (obj.wallCost) wallPrice += obj.wallCost;
+    if (obj.ceilingCost) ceilingPrice += obj.ceilingCost;
+    if (obj.electricalCost) electricalPrice += obj.electricalCost;
+    if (obj.windowCost) windowPrice += obj.windowCost;
+    if (obj.doorCost) doorPrice += obj.doorCost;
   });
 
-  const customizationExpense = [floorPrice, wallPrice];
+  const customizationExpense = [
+    floorPrice,
+    wallPrice,
+    ceilingPrice,
+    electricalPrice,
+    windowPrice,
+    doorPrice,
+  ];
 
   const data = {
     labels: customizationTitles,

@@ -2,74 +2,75 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Card } from "react-bootstrap";
 import Collapse from "react-bootstrap/Collapse";
-import { wallCustomizationPrice } from "../../redux/houseSlice";
+import { ceilingCustomizationPrice } from "../../redux/houseSlice";
 import { useDispatch } from "react-redux";
-import wall1 from "../../assets/customizations/Walls/painting.png";
-import wall2 from "../../assets/customizations//Walls/paintingandwallputty.png";
-import wall3 from "../../assets/customizations/Walls/paintingwallputtywallpaper.png";
-import wall1Kitchen from "../../assets/customizations/Walls/kitchen/wallputty.png";
-import wall2Kitchen from "../../assets/customizations/Walls/kitchen/highlightertiling.png";
-import wall3Kitchen from "../../assets/customizations/Walls/kitchen/fullwalltiling.png";
-import wall1Bathroom from "../../assets/customizations/Walls/bathroom/painting.png";
-import wall2Bathroom from "../../assets/customizations/Walls/bathroom/walltiling.png";
-import wall3Bathroom from "../../assets/customizations/Walls/bathroom/italianmarble.png";
+import ceiling1 from "../../assets/customizations/Ceiling/painting.png";
+import ceiling2 from "../../assets/customizations/Ceiling/falseceiling.png";
+import ceiling3 from "../../assets/customizations/Ceiling/designerfalseceiling.png";
+import ceiling1Kitchen from "../../assets/customizations/Ceiling/kitchen/painting.png";
+import ceiling2Kitchen from "../../assets/customizations/Ceiling/kitchen/falseceiling.png";
+import ceiling3Kitchen from "../../assets/customizations/Ceiling/kitchen/designerceiling.png";
+import ceiling1Bathroom from "../../assets/customizations/Ceiling/bathroom/painting.png";
+import ceiling2Bathroom from "../../assets/customizations/Ceiling/bathroom/ceiling.png";
+import ceiling3Bathroom from "../../assets/customizations/Ceiling/bathroom/metallicceiling.png";
 
-export const Walls = ({ roomIndex, roomID }) => {
-  const [open, setopen] = useState(false);
+export const Ceiling = ({ roomIndex, roomID }) => {
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const roomIndexChanged = roomIndex + 100;
+  const roomIndexChanged = roomIndex + 110;
 
   const image1 = () => {
     if (roomID === "kitchen") {
       return {
-        image: wall1Kitchen,
-        title: "Wall Putty and Painting",
+        image: ceiling1Kitchen,
+        title: "Painting",
         cost: 9120,
       };
     } else if (roomID === "masterbathroom" || roomID.includes("bathroom")) {
       return {
-        image: wall1Bathroom,
+        image: ceiling1Bathroom,
         title: "Painting",
-        cost: 4250,
+        cost: 4000,
       };
     } else if (roomID === "masterbedroom" || roomID.includes("bedroom")) {
       return {
-        image: wall1,
+        image: ceiling1,
         title: "Painting",
         cost: 15960,
       };
     } else {
       return {
-        image: wall1,
+        image: ceiling1,
         title: "Painting",
-        cost: 28500,
+        cost: 7000,
       };
     }
   };
+
   const image2 = () => {
     if (roomID === "kitchen") {
       return {
-        image: wall2Kitchen,
-        title: "Highlighter Wall Tiling",
+        image: ceiling2Kitchen,
+        title: "Painting & False Ceiling",
         cost: 33600,
       };
     } else if (roomID === "masterbathroom" || roomID.includes("bathroom")) {
       return {
-        image: wall2Bathroom,
-        title: "Full wall Tiling",
-        cost: 8100,
+        image: ceiling2Bathroom,
+        title: "Painting & Water Resistant Ceiling",
+        cost: 9000,
       };
     } else if (roomID === "masterbedroom" || roomID.includes("bedroom")) {
       return {
-        image: wall2,
-        title: "Painting & Wall Putty",
+        image: ceiling2,
+        title: "Painting & False Ceiling",
         cost: 30660,
       };
     } else {
       return {
-        image: wall2,
-        title: "Painting & Wall Putty",
+        image: ceiling2,
+        title: "Painting & False Ceiling",
         cost: 28500,
       };
     }
@@ -77,46 +78,46 @@ export const Walls = ({ roomIndex, roomID }) => {
   const image3 = () => {
     if (roomID === "kitchen") {
       return {
-        image: wall3Kitchen,
-        title: "Full Wall Tiling",
+        image: ceiling3Kitchen,
+        title: "Designer False Ceiling and Painting",
         cost: 33600,
       };
     } else if (roomID === "masterbathroom" || roomID.includes("bathroom")) {
       return {
-        image: wall3Bathroom,
-        title: "Italian Marble",
-        cost: 12000,
+        image: ceiling3Bathroom,
+        title: "Water Proof Metallic Ceiling",
+        cost: 13000,
       };
     } else if (roomID === "masterbedroom" || roomID.includes("bedroom")) {
       return {
-        image: wall3,
-        title: "Painting ,Wall Putty & Wallpaper",
+        image: ceiling3,
+        title: "Designer False Ceiling and Painting",
         cost: 37860,
       };
     } else {
       return {
-        image: wall3,
-        title: "Painting ,Wall Putty & Wallpaper",
-        cost: 28500,
+        image: ceiling3,
+        title: "Designer False Ceiling and Painting",
+        cost: 40000,
       };
     }
   };
 
-  const WallsImages = [
+  const CeilingImages = [
     {
-      id: 4,
+      id: 7,
       src: image1().image,
       title: image1().title,
       cost: image1().cost,
     },
     {
-      id: 5,
+      id: 8,
       src: image2().image,
       title: image2().title,
       cost: image2().cost,
     },
     {
-      id: 6,
+      id: 9,
       src: image3().image,
       title: image3().title,
       cost: image3().cost,
@@ -126,14 +127,14 @@ export const Walls = ({ roomIndex, roomID }) => {
   return (
     <Card className="mt-2 p-2">
       <div>
-        <Form.Check.Input onClick={() => setopen(!open)} aria-expanded={open} />{" "}
-        <Form.Check.Label>Walls</Form.Check.Label>
+        <Form.Check.Input onClick={() => setOpen(!open)} aria-expanded={open} />{" "}
+        <Form.Check.Label>Ceiling</Form.Check.Label>
       </div>
 
       <Collapse in={open}>
         <div>
           <div className=" row mt-3  text-center justify-content-center">
-            {WallsImages.map((image, index) => (
+            {CeilingImages.map((image, index) => (
               <div key={index} className="col-sm-4 image-container">
                 <label>
                   <input type="radio" name={roomIndexChanged} />
@@ -143,7 +144,7 @@ export const Walls = ({ roomIndex, roomID }) => {
                     alt={image.title}
                     className="customize-images"
                     onClick={() => {
-                      dispatch(wallCustomizationPrice({ image, roomID }));
+                      dispatch(ceilingCustomizationPrice({ image, roomID }));
                     }}
                   />
                   <p className="image-title">{image.title}</p>

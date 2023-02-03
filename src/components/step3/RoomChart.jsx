@@ -12,15 +12,40 @@ export const RoomChart = () => {
 
   const RoomTitles = home.map((el) => el.title);
   const Expense = home.map((el) => {
-    let floorCost = 0;
-    let wallCost = 0;
+    let floorCost = 0,
+      wallCost = 0,
+      ceilingCost = 0,
+      electricalCost = 0,
+      windowCost = 0,
+      doorCost = 0;
+
     if (el.floorCost !== undefined) {
       floorCost = el.floorCost;
     }
     if (el.wallCost !== undefined) {
       wallCost = el.wallCost;
     }
-    return floorCost + wallCost;
+    if (el.ceilingCost !== undefined) {
+      ceilingCost = el.ceilingCost;
+    }
+    if (el.electricalCost !== undefined) {
+      electricalCost = el.electricalCost;
+    }
+    if (el.windowCost !== undefined) {
+      windowCost = el.windowCost;
+    }
+    if (el.doorCost !== undefined) {
+      doorCost = el.doorCost;
+    }
+
+    return (
+      floorCost +
+      wallCost +
+      ceilingCost +
+      electricalCost +
+      windowCost +
+      doorCost
+    );
   });
 
   const data = {

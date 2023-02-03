@@ -7,8 +7,6 @@ const initialState = {
   userCarpetAreaValue: 0,
   bedroomQuantity: 1,
   bathroomQuantity: 1,
-  floorPrice: 0,
-  wallPrice: 0,
   totalCost: 0,
 };
 
@@ -67,7 +65,7 @@ export const HouseSlice = createSlice({
       state.userCarpetAreaValue = action.payload;
     },
 
-    flooringPrice: (state, action) => {
+    floorCustomizationPrice: (state, action) => {
       state.house.map((room) => {
         if (room.id === action.payload.roomID) {
           room.floorCost = action.payload.image.cost;
@@ -79,6 +77,38 @@ export const HouseSlice = createSlice({
       state.house.map((room) => {
         if (room.id === action.payload.roomID) {
           room.wallCost = action.payload.image.cost;
+        }
+      });
+    },
+
+    ceilingCustomizationPrice: (state, action) => {
+      state.house.map((room) => {
+        if (room.id === action.payload.roomID) {
+          room.ceilingCost = action.payload.image.cost;
+        }
+      });
+    },
+
+    electricalCustomizationPrice: (state, action) => {
+      state.house.map((room) => {
+        if (room.id === action.payload.roomID) {
+          room.electricalCost = action.payload.image.cost;
+        }
+      });
+    },
+
+    windowCustomizationPrice: (state, action) => {
+      state.house.map((room) => {
+        if (room.id === action.payload.roomID) {
+          room.windowCost = action.payload.image.cost;
+        }
+      });
+    },
+
+    doorCustomizationPrice: (state, action) => {
+      state.house.map((room) => {
+        if (room.id === action.payload.roomID) {
+          room.doorCost = action.payload.image.cost;
         }
       });
     },
@@ -96,8 +126,12 @@ export const {
   bathroomIncrement,
   bathroomDecrement,
   userCarpetArea,
+  floorCustomizationPrice,
   wallCustomizationPrice,
-  flooringPrice,
+  ceilingCustomizationPrice,
+  electricalCustomizationPrice,
+  windowCustomizationPrice,
+  doorCustomizationPrice,
   totalExpense,
 } = HouseSlice.actions;
 

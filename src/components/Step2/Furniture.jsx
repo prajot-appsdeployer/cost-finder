@@ -14,7 +14,7 @@ import wall1Bathroom from "../../assets/customizations/Walls/bathroom/painting.p
 import wall2Bathroom from "../../assets/customizations/Walls/bathroom/walltiling.png";
 import wall3Bathroom from "../../assets/customizations/Walls/bathroom/italianmarble.png";
 
-export const Walls = ({ roomIndex, roomID }) => {
+export const Furniture = ({ roomIndex, roomID }) => {
   const [open, setopen] = useState(false);
   const dispatch = useDispatch();
 
@@ -102,7 +102,7 @@ export const Walls = ({ roomIndex, roomID }) => {
     }
   };
 
-  const WallsImages = [
+  const FurnitureImages = [
     {
       id: 4,
       src: image1().image,
@@ -127,13 +127,13 @@ export const Walls = ({ roomIndex, roomID }) => {
     <Card className="mt-2 p-2">
       <div>
         <Form.Check.Input onClick={() => setopen(!open)} aria-expanded={open} />{" "}
-        <Form.Check.Label>Walls</Form.Check.Label>
+        <Form.Check.Label>Furniture</Form.Check.Label>
       </div>
 
       <Collapse in={open}>
         <div>
           <div className=" row mt-3  text-center justify-content-center">
-            {WallsImages.map((image, index) => (
+            {FurnitureImages.map((image, index) => (
               <div key={index} className="col-sm-4 image-container">
                 <label>
                   <input type="radio" name={roomIndexChanged} />
@@ -143,7 +143,7 @@ export const Walls = ({ roomIndex, roomID }) => {
                     alt={image.title}
                     className="customize-images"
                     onClick={() => {
-                      dispatch(wallCustomizationPrice({ image, roomID }));
+                      dispatch(a({ image, roomID }));
                     }}
                   />
                   <p className="image-title">{image.title}</p>

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Card } from "react-bootstrap";
 import Collapse from "react-bootstrap/Collapse";
-import { flooringPrice } from "../../redux/houseSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { floorCustomizationPrice } from "../../redux/houseSlice";
+import { useDispatch } from "react-redux";
 import floor1 from "../../assets/customizations/Flooring/vitrified.png";
 import floor2 from "../../assets/customizations/Flooring/wooden.png";
 import floor3 from "../../assets/customizations/Flooring/italian.png";
@@ -15,7 +15,7 @@ import floor2Bathroom from "../../assets/customizations/Flooring/bathroom/wooden
 import floor3Bathroom from "../../assets/customizations/Flooring/bathroom/italianBathroom.png";
 
 export const Flooring = ({ roomIndex, roomID }) => {
-  const [openFlorring, setOpenFlooring] = useState(false);
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   const image1 = () => {
@@ -102,35 +102,29 @@ export const Flooring = ({ roomIndex, roomID }) => {
       src: image1().image,
       title: image1().title,
       cost: image1().cost,
-      active: false,
     },
     {
       id: 2,
       src: image2().image,
       title: image2().title,
       cost: image2().cost,
-      active: false,
     },
     {
       id: 3,
       src: image3().image,
       title: "Italian Marble",
       cost: image3().cost,
-      active: false,
     },
   ];
 
   return (
     <Card className="mt-2 p-2">
       <div>
-        <Form.Check.Input
-          onClick={() => setOpenFlooring(!openFlorring)}
-          aria-expanded={openFlorring}
-        />{" "}
+        <Form.Check.Input onClick={() => setOpen(!open)} aria-expanded={open} />{" "}
         <Form.Check.Label>Flooring</Form.Check.Label>
       </div>
 
-      <Collapse in={openFlorring}>
+      <Collapse in={open}>
         <div>
           <div className=" row mt-3  text-center justify-content-center">
             {FlooringImages.map((image, index) => (
@@ -140,7 +134,7 @@ export const Flooring = ({ roomIndex, roomID }) => {
                     type="radio"
                     name={roomIndex}
                     onClick={() => {
-                      dispatch(flooringPrice({ image, roomID }));
+                      dispatch(floorCustomizationPrice({ image, roomID }));
                     }}
                   />
                   <img

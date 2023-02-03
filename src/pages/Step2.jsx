@@ -16,12 +16,27 @@ export const Step2 = () => {
 
   let floorPrice = 0,
     wallPrice = 0,
+    ceilingPrice = 0,
+    electricalPrice = 0,
+    windowPrice = 0,
+    doorPrice = 0,
     totalPrice = 0;
+
   home.forEach((obj) => {
     if (obj.floorCost) floorPrice += obj.floorCost;
     if (obj.wallCost) wallPrice += obj.wallCost;
+    if (obj.ceilingCost) ceilingPrice += obj.ceilingCost;
+    if (obj.electricalCost) electricalPrice += obj.electricalCost;
+    if (obj.windowCost) windowPrice += obj.windowCost;
+    if (obj.doorCost) doorPrice += obj.doorCost;
   });
-  totalPrice = floorPrice + wallPrice;
+  totalPrice =
+    floorPrice +
+    wallPrice +
+    ceilingPrice +
+    electricalPrice +
+    windowPrice +
+    doorPrice;
 
   useEffect(() => {
     dispatch(setID());
