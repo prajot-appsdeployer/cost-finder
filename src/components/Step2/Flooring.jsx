@@ -3,35 +3,119 @@ import Form from "react-bootstrap/Form";
 import { Card } from "react-bootstrap";
 import Collapse from "react-bootstrap/Collapse";
 import { flooringPrice } from "../../redux/houseSlice";
-import { useDispatch } from "react-redux";
-import vitrifiedImage from "../../assets/customizations/Flooring/vitrified.png";
-import woodenImage from "../../assets/customizations/Flooring/wooden.png";
-import italianImage from "../../assets/customizations/Flooring/italian.png";
+import { useDispatch, useSelector } from "react-redux";
+import floor1 from "../../assets/customizations/Flooring/vitrified.png";
+import floor2 from "../../assets/customizations/Flooring/wooden.png";
+import floor3 from "../../assets/customizations/Flooring/italian.png";
+import floor1Kitchen from "../../assets/customizations/Flooring/kitchen/vitrifiedKitchen.png";
+import floor2Kitchen from "../../assets/customizations/Flooring/kitchen/woodenKitchen.png";
+import floor3Kitchen from "../../assets/customizations/Flooring/kitchen/italianKitchen.png";
+import floor1Bathroom from "../../assets/customizations/Flooring/bathroom/vitrifiedBathroom.png";
+import floor2Bathroom from "../../assets/customizations/Flooring/bathroom/woodenBathroom.png";
+import floor3Bathroom from "../../assets/customizations/Flooring/bathroom/italianBathroom.png";
 
 export const Flooring = ({ roomIndex, roomID }) => {
   const [openFlorring, setOpenFlooring] = useState(false);
   const dispatch = useDispatch();
 
+  const image1 = () => {
+    if (roomID === "kitchen") {
+      return {
+        image: floor1Kitchen,
+        title: "Vitrified Tiles",
+        cost: 10800,
+      };
+    } else if (roomID === "masterbathroom" || roomID.includes("bathroom")) {
+      return {
+        image: floor1Bathroom,
+        title: "Vitrified Tiles",
+        cost: 14400,
+      };
+    } else if (roomID === "masterbedroom" || roomID.includes("bedroom")) {
+      return {
+        image: floor1,
+        title: "Vitrified Tiles",
+        cost: 18900,
+      };
+    } else {
+      return {
+        image: floor1,
+        title: "Vitrified Tiles",
+        cost: 33750,
+      };
+    }
+  };
+  const image2 = () => {
+    if (roomID === "kitchen") {
+      return {
+        image: floor2Kitchen,
+        title: "Wooden Flooring",
+        cost: 7200,
+      };
+    } else if (roomID === "masterbathroom" || roomID.includes("bathroom")) {
+      return {
+        image: floor2Bathroom,
+        title: "Deckwood Flooring",
+        cost: 4800,
+      };
+    } else if (roomID === "masterbedroom" || roomID.includes("bedroom")) {
+      return {
+        image: floor2,
+        title: "Wooden Flooring",
+        cost: 12600,
+      };
+    } else {
+      return {
+        image: floor2,
+        title: "Wooden Flooring",
+        cost: 22500,
+      };
+    }
+  };
+  const image3 = () => {
+    if (roomID === "kitchen") {
+      return {
+        image: floor3Kitchen,
+        cost: 14400,
+      };
+    } else if (roomID === "masterbathroom" || roomID.includes("bathroom")) {
+      return {
+        image: floor3Bathroom,
+        cost: 16400,
+      };
+    } else if (roomID === "masterbedroom" || roomID.includes("bedroom")) {
+      return {
+        image: floor3,
+        cost: 25200,
+      };
+    } else {
+      return {
+        image: floor3,
+        cost: 45000,
+      };
+    }
+  };
+
   const FlooringImages = [
     {
       id: 1,
-      src: vitrifiedImage,
-      title: "Vitrified Tiles",
-      cost: 32000,
+      src: image1().image,
+      title: image1().title,
+      cost: image1().cost,
       active: false,
     },
     {
       id: 2,
-      src: woodenImage,
-      title: "Wooden Flooring",
-      cost: 28000,
+      src: image2().image,
+      title: image2().title,
+      cost: image2().cost,
       active: false,
     },
     {
       id: 3,
-      src: italianImage,
+      src: image3().image,
       title: "Italian Marble",
-      cost: 55000,
+      cost: image3().cost,
       active: false,
     },
   ];

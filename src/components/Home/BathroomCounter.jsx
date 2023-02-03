@@ -24,7 +24,6 @@ function BathroomCounter() {
           variant="success me-2"
           onClick={() => {
             dispatch(bathroomDecrement());
-            decrement();
           }}
         >
           -
@@ -42,7 +41,6 @@ function BathroomCounter() {
           variant="success ms-2"
           onClick={() => {
             dispatch(bathroomIncrement(bathroom));
-            increment();
           }}
         >
           +
